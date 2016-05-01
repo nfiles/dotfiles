@@ -186,7 +186,7 @@ bar {
         # i3bar position
         position top
 
-        status_command i3status
+        status_command i3status -c ~/.i3/i3status.conf
 
 	# fonts
 	font pango:DejaVu Sans Mono, Awesome 9
