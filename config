@@ -29,15 +29,11 @@ new_window 1pixel
 # hide borders by window edge
 hide_edge_borders both
 
-# startup applications
-exec --no-startup-id "~/.dropbox-dist/dropboxd &"
-
-# window classes
-for_window [class="Nautilus" instance="nautilus"] floating enable
-for_window [instance="chrome_app_list"] floating enable
-
 # lock screen
 bindsym $mod+Escape exec sh ~/.i3/i3lock
+
+# start chrome web launcher
+bindsym $mod+p exec /usr/bin/google-chrome --show-app-list
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
@@ -103,16 +99,16 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # workspace names
-set $workspace1 "1: "
-set $workspace2 "2: "
-set $workspace3 "3"
+set $workspace1 "1:"
+set $workspace2 "2:"
+set $workspace3 "3:"
 set $workspace4 "4"
 set $workspace5 "5"
 set $workspace6 "6"
 set $workspace7 "7"
 set $workspace8 "8"
 set $workspace9 "9"
-set $workspace10 "10: "
+set $workspace10 "10:"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -144,6 +140,19 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# startup applications
+exec --no-startup-id "~/.dropbox-dist/dropboxd &"
+
+# float windows
+for_window [class="Nautilus" instance="nautilus"] floating enable
+for_window [instance="chrome_app_list"] floating enable
+for_window [class="google-chrome" instance="crx_nckgahadagoaajjgafhacjanaoiihapd"] floating enable # hangouts
+
+# workspace assignment
+assign [class="google-chrome" instance="crx_pkclgpgponpjmpfokoepglboejdobkpl"] $workspace3 # inbox
+
+# exec --no-message-id i3-msg 'workspace $workspace10; exec nautilus --no-default-window'
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
