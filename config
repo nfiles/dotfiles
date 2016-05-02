@@ -101,7 +101,7 @@ bindsym $mod+a focus parent
 # workspace names
 set $workspace1 "1:"
 set $workspace2 "2:"
-set $workspace3 "3:"
+set $workspace3 "3"
 set $workspace4 "4"
 set $workspace5 "5"
 set $workspace6 "6"
@@ -142,8 +142,8 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # volume keys
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 2%+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 2%- unmute
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse set Master 2%+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse set Master 2%- unmute
 bindsym XF86AudioMute exec amixer -q -D pulse set Master toggle
 
 # startup applications
