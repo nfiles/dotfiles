@@ -107,7 +107,7 @@ set $workspace5 "5"
 set $workspace6 "6"
 set $workspace7 "7"
 set $workspace8 "8"
-set $workspace9 "9"
+set $workspace9 "9:"
 set $workspace10 "10:"
 
 # switch to workspace
@@ -156,6 +156,7 @@ for_window [class="google-chrome" instance="crx_nckgahadagoaajjgafhacjanaoiihapd
 
 # workspace assignment
 assign [class="google-chrome" instance="crx_pkclgpgponpjmpfokoepglboejdobkpl"] $workspace3 # inbox
+assign [class="google-chrome" instance="google-chrome"] $workspace2 # inbox
 
 # exec --no-message-id i3-msg 'workspace $workspace10; exec nautilus --no-default-window'
 
