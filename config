@@ -30,10 +30,7 @@ new_window 1pixel
 hide_edge_borders both
 
 # lock screen
-bindsym $mod+Escape exec sh ~/.i3/i3lock
-
-# start chrome web launcher
-bindsym $mod+p exec /usr/bin/google-chrome --show-app-list
+bindsym $mod+Escape exec sh ~/.i3/lock
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
@@ -142,9 +139,9 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # volume keys
-bindsym XF86AudioRaiseVolume exec amixer -q -D pulse set Master 2%+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q -D pulse set Master 2%- unmute
-bindsym XF86AudioMute exec amixer -q -D pulse set Master toggle
+bindsym XF86AudioRaiseVolume exec amixer sset Master 2%+ unmute
+bindsym XF86AudioLowerVolume exec amixer sset Master 2%- unmute
+bindsym XF86AudioMute exec amixer sset Master toggle
 
 # startup applications
 exec --no-startup-id "~/.dropbox-dist/dropboxd &"
@@ -199,7 +196,7 @@ bar {
     # i3bar position
     position top
 
-    status_command i3status -c ~/.i3/i3status.conf
+    status_command i3status --config ~/.i3/status.conf
 
     # fonts
     font pango:DejaVu Sans Mono, Awesome 9
