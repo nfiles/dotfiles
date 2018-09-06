@@ -1,0 +1,12 @@
+#! /bin/sh
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# add rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# add go (variable is exported in .exports)
+export PATH="$PATH:$GOROOT/bin"
