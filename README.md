@@ -1,1 +1,9 @@
-# i3-config
+# dotfiles
+
+```sh
+# link the files to the user's home directory
+make
+
+# test
+make shellcheck
+```
