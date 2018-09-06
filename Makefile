@@ -8,6 +8,9 @@ all: user-bin dotfiles
 .PHONY: user-bin
 user-bin: ## Installs the bin directory files.
 	# add aliases for things in bin
+	if [ ! -d $(HOME)/bin ]; then \
+		mkdir -p $(HOME)/bin; \
+	fi; \
 	for file in $(shell find $(CURDIR)/bin \
 					-type f \
 					-not -name "*-backlight" \
