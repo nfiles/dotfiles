@@ -1,11 +1,22 @@
-.PHONY: all bin dotfiles etc test shellcheck
+# eventually there might be more than one target...
+.PHONY: all
+all: user-bin dotfiles
 
 # most of this is shamelessly stolen
 # src: https://github.com/jessfraz/dotfiles/blob/master/Makefile
 
-# eventually there might be more than one target...
-all: dotfiles
+.PHONY: user-bin
+user-bin: ## Installs the bin directory files.
+	# add aliases for things in bin
+	for file in $(shell find $(CURDIR)/bin \
+					-type f \
+					-not -name "*-backlight" \
+					-not -name ".*.swp"); do \
+		f=$$(basename $$file); \
+		ln -sfn $$file $(HOME)/bin/$$f; \
+	done; \
 
+.PHONY: dotfiles
 dotfiles:
 	# add aliases for dotfiles
 	for file in $(shell find $(CURDIR) \
@@ -17,8 +28,9 @@ dotfiles:
 					-not -name ".gnupg"); do \
 		f=$$(basename $$file); \
 		ln -sfn $$file $(HOME)/$$f; \
-	done;
+	done; \
 
+.PHONY: test
 test: shellcheck
 
 # if this session isn't interactive, then we don't want to allocate a
@@ -29,6 +41,7 @@ ifeq ($(INTERACTIVE), 1)
 	DOCKER_FLAGS += -t
 endif
 
+.PHONY: shellcheck
 shellcheck:
 	docker run --rm -i $(DOCKER_FLAGS) \
 		--name df-shellcheck \

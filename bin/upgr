@@ -1,0 +1,24 @@
+#! /bin/bash
+
+safeRunCommand() {
+    typeset cmd="$*"
+    typeset ret_code
+    eval $cmd
+    ret_code=$?
+    if [ $ret_code != 0 ]; then
+	printf "Error : [%d] when executing command: '$cmd'\n" $ret_code
+        exit $ret_code
+    fi
+}
+
+echo 'Updating package lists...'
+safeRunCommand "apt-get update -qq"
+
+echo 'Installing package upgrades...'
+safeRunCommand "apt-get upgrade -y"
+
+echo 'Removing unneeded packages...'
+safeRunCommand "apt-get autoremove"
+
+echo 'Cleaning local package repository...'
+safeRunCommand "apt-get autoclean"
