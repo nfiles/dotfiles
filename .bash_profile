@@ -5,7 +5,7 @@
 #umask 022
 
 # Load .bashrc and other files...
-for file in ~/.{bashrc,aliases,exports,path}; do
+for file in ~/.{bashrc,aliases,exports,path,extras}; do
 	if [[ -r "$file" ]] && [[ -f "$file" ]]; then
 		source "$file"
 	fi
