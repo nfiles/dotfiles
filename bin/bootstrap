@@ -1,0 +1,33 @@
+#! /bin/bash
+
+set -e
+set -o pipefail
+
+#######################################
+# require packages
+
+function require {
+	name="$1"
+	binPath="$(which "$name" 2> /dev/null || true)"
+	if [ -z "$binPath" ]; then
+		echo "'$name' is required" 1>&2
+		exit 1
+	fi
+}
+
+require "curl"
+
+function missing {
+	name="$1"
+	binPath="$(which "$name" 2> /dev/null || true)"
+	if [ ! -z "$binPath" ]; then
+		return 1
+	fi
+}
+
+if missing "keybase"; then
+	echo "Installing keybase..."
+	curl -s --remote-name https://prerelease.keybase.io/keybase_amd64.deb
+	sudo apt install ./keybase_amd64.deb -y
+	rm -f ./keybase_amd64.deb
+fi
