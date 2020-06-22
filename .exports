@@ -22,3 +22,4 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 # git
 export GIT_EDITOR="vim"
+export GPG_TTY=$(tty)
