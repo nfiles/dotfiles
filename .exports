@@ -22,4 +22,9 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 # git
 export GIT_EDITOR="vim"
-export GPG_TTY=$(tty)
+
+# if it's an ssh session export GPG_TTY
+if [[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]]; then
+	GPG_TTY=$(tty)
+	export GPG_TTY
+fi
