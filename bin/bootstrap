@@ -31,3 +31,13 @@ if missing "keybase"; then
 	sudo apt install ./keybase_amd64.deb -y
 	rm -f ./keybase_amd64.deb
 fi
+
+if missing "tailscale"; then
+	echo "Installing tailscale..."
+	CODENAME="$(lsb_release -cs)"
+	curl https://pkgs.tailscale.com/stable/ubuntu/${CODENAME}.gpg | sudo apt-key add -
+	curl https://pkgs.tailscale.com/stable/ubuntu/${CODENAME}.list | sudo tee /etc/apt/sources.list.d/tailscale.list
+	sudo apt update
+	sudo apt install -qqy tailscale
+	unset CODENAME
+fi
