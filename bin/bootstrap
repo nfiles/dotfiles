@@ -41,3 +41,8 @@ if missing "tailscale"; then
 	sudo apt install -qqy tailscale
 	unset CODENAME
 fi
+
+if missing "tmux"; then
+	echo "Installing tmux..."
+	sudo apt install -qqy tmux
+fi
