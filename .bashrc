@@ -10,6 +10,23 @@ case $- in
       *) return;;
 esac
 
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
+
+# global definitions
+if [ -r /etc/bashrc ]; then
+	source /etc/bashrc
+fi
+
+# Load other files...
+for file in ~/.{aliases,exports,path,extras}; do
+	if [[ -r "$file" ]] && [[ -f "$file" ]]; then
+		source "$file"
+	fi
+done
+unset file
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -24,6 +41,12 @@ HISTFILESIZE=2000
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+
+# Case-insensitive globbing (used in pathname expansion)
+shopt -s nocaseglob
+
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
@@ -62,9 +85,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1=$'\u250c''${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n'$'\u2514''\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1=$'\u250c''${debian_chroot:+($debian_chroot)}\u@\h:\w\n'$'\u2514''\$ '
 fi
 unset color_prompt force_color_prompt
 
