@@ -68,6 +68,7 @@ fi
 case "$TERM" in
     xterm-color) color_prompt=yes;;
     xterm-256color) color_prompt=yes;;
+    xterm-kitty) color_prompt=yes;;
     # tmux
     screen) color_prompt=yes;;
 esac
