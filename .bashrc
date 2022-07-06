@@ -71,6 +71,7 @@ case "$TERM" in
     xterm-kitty) color_prompt=yes;;
     # tmux
     screen) color_prompt=yes;;
+    tmux-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
