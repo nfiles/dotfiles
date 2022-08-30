@@ -6,4 +6,14 @@ alias la='ls -A'
 alias l='ls -CF'
 
 # tmux
-alias tm='tmux new-session -A -s main'
+alias tmls='tmux list-sessions'
+function tm {
+	local NAME="$1"
+	shift
+
+	if [ -z "$NAME" ]; then
+		NAME="main"
+	fi
+
+	tmux new-session -A -s "$NAME"
+}
