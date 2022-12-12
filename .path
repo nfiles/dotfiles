@@ -6,7 +6,9 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 # add rust
-export PATH="$HOME/.cargo/bin:$PATH"
+if [ -r "$HOME/.cargo/env" ]; then
+    source "$HOME/.cargo/env"
+fi
 
 # add go (variable is exported in .exports)
 export PATH="$PATH:$GOROOT/bin"
