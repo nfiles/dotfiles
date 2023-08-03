@@ -22,3 +22,6 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 # git
 export GIT_EDITOR="vim"
+
+# rtx
+eval "$($HOME/.local/share/rtx/bin/rtx activate bash)"
