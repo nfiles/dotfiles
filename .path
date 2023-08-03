@@ -10,5 +10,10 @@ if [ -r "$HOME/.cargo/env" ]; then
     source "$HOME/.cargo/env"
 fi
 
+# load ssh-find-agent
+if [ -d "$HOME/projects/ssh-find-agent" ]; then
+    source "$HOME/projects/ssh-find-agent/ssh-find-agent.sh"
+fi
+
 # add go (variable is exported in .exports)
 export PATH="$PATH:$GOROOT/bin"
