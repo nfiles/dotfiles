@@ -17,3 +17,11 @@ function tm {
 
 	tmux new-session -A -s "$NAME"
 }
+
+# print the first line of std (the header) and perform an operation on the rest
+# ref: https://unix.stackexchange.com/a/11859
+function body {
+	IFS= read -r header
+	printf '%s\n' "$header"
+	"$@"
+}
