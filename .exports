@@ -24,4 +24,5 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export GIT_EDITOR="vim"
 
 # rtx
-eval "$($HOME/.local/share/rtx/bin/rtx activate bash)"
+RTX_DIR="$HOME/.local/share/rtx"
+[ -s "$RTX_DIR/bin/rtx" ] && eval "$($RTX_DIR/bin/rtx activate bash)"
