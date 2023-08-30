@@ -1,0 +1,18 @@
+#! /bin/bash
+
+set -e
+set -o pipefail
+
+ARG="${1:--}"
+
+function read {
+    if [ "$ARG" == "-" ]; then
+        cat /dev/stdin
+    elif [ -r "$ARG" ]; then
+        cat "$ARG"
+    else
+        echo "$ARG"
+    fi
+}
+
+read | tr '.' '\n' | base64 -d | jq
