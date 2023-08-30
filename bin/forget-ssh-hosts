@@ -1,0 +1,16 @@
+#! /bin/bash
+
+# set -e
+# set -o pipefail
+
+HOST_PATTERN="${1:?missing hosts}"
+shift
+
+case "$OSTYPE" in
+	"darwin"*)
+		sed -e "/$HOST_PATTERN/Id" -i '' ~/.ssh/known_hosts
+		;;
+	*)
+		sed -e "/$HOST_PATTERN/Id" -i ~/.ssh/known_hosts
+		;;
+esac
