@@ -8,14 +8,6 @@ export DOTNET_CLI_TELEMETRY_OPTOUT="true"
 export GOROOT="/usr/local/go"
 export GOPATH="$HOME/go"
 
-# NVM
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# select node version
-# nvm use stable
-
 # RVM
 export PATH="$PATH:$HOME/.rvm/bin"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
@@ -23,6 +15,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 # git
 export GIT_EDITOR="vim"
 
-# rtx
-RTX_DIR="$HOME/.local/share/rtx"
-[ -s "$RTX_DIR/bin/rtx" ] && eval "$($RTX_DIR/bin/rtx activate bash)"
+# mise
+# ref: https://mise.jdx.dev/
+MISE_BIN="$HOME/.local/bin/mise"
+[ -s "$MISE_BIN" ] && eval "$($MISE_BIN activate bash)"
