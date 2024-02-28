@@ -1,4 +1,4 @@
 #! /bin/bash
 
 STREAM="${1:-/dev/stdin}"
-cat "$STREAM" | head -1 | tr "," "\n" | nl
+cat "$STREAM" | head -1 | tr "," "\n" | nl -b a
