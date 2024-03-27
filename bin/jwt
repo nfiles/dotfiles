@@ -5,7 +5,7 @@ set -o pipefail
 
 ARG="${1:--}"
 
-function read {
+function stdin {
     if [ "$ARG" == "-" ]; then
         cat /dev/stdin
     elif [ -r "$ARG" ]; then
@@ -15,4 +15,14 @@ function read {
     fi
 }
 
-read | tr '.' '\n' | base64 -d | jq
+function decode {
+    # fix the padding
+    local ENCODED="${1}==="
+    echo "${ENCODED:0:${#ENCODED}&-4}" | base64 -d | jq
+}
+
+while IFS="." read -r header payload signature; do
+    decode "$header"
+    decode "$payload"
+    echo "$signature"
+done <<< $(stdin)
