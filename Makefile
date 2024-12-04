@@ -8,15 +8,15 @@ all: user-bin dotfiles
 .PHONY: user-bin
 user-bin: ## Installs the bin directory files.
 	# add aliases for things in bin
-	if [ ! -d $(HOME)/bin ]; then \
-		mkdir -p $(HOME)/bin; \
+	if [ ! -d $$HOME/bin ]; then \
+		mkdir -p $$HOME/bin; \
 	fi; \
 	for file in $(shell find $(CURDIR)/bin \
 					-type f \
 					-not -name "*-backlight" \
 					-not -name ".*.swp"); do \
 		f=$$(basename $$file); \
-		ln -sfn $$file $(HOME)/bin/$$f; \
+		ln -sfn $$file $$HOME/bin/$$f; \
 	done; \
 
 .PHONY: dotfiles
@@ -30,7 +30,7 @@ dotfiles:
 					-not -name ".*.swp" \
 					-not -name ".gnupg"); do \
 		f=$$(basename $$file); \
-		ln -sfn $$file $(HOME)/$$f; \
+		ln -sfn $$file $$HOME/$$f; \
 	done; \
 
 .PHONY: test
