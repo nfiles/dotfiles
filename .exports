@@ -5,7 +5,14 @@ export ASPNETCORE_ENVIRONMENT="Development"
 export DOTNET_CLI_TELEMETRY_OPTOUT="true"
 
 # GOPATH
-export GOROOT="/usr/local/go"
+GO_LINUX="/usr/local/go"
+GO_WINDOWS='/c/Program Files/Go/'
+
+GOROOT="$GO_LINUX"
+if test -d "$GO_WINDOWS"; then
+    GOROOT="$GO_WINDOWS"
+fi
+export GOROOT
 export GOPATH="$HOME/go"
 
 # RVM
